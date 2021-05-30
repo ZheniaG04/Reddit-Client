@@ -12,6 +12,8 @@ struct DetailView: View {
     let url: String?
     let saveButtonEnable: Bool
     
+    @State private var showingAlert = false
+    
     var body: some View {
         WebView(urlString: url)
             .toolbar(content: {
@@ -19,11 +21,17 @@ struct DetailView: View {
                     Button(action: {
                         let imageSaver = ImageSaver()
                         imageSaver.savePhoto(from: url)
+                        showingAlert = true
                     }, label: {
                         Label("Save", systemImage: "square.and.arrow.down")
                     })
                 }
             })
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text("Info"),
+                      message: Text("The image was saved."),
+                      dismissButton: .default(Text("Got it!")))
+            }
     }
 }
 
