@@ -13,7 +13,9 @@ struct Reddit_ClientApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            let networkManager = NetworkManager()
+            let listViewModel = PostListViewModel(manager: networkManager)
+            ContentView(postListViewModel: listViewModel)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
