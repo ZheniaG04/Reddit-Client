@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import CoreData
 
 struct PostViewModel: Identifiable {
     
@@ -56,13 +55,7 @@ struct PostViewModel: Identifiable {
         return formatter.localizedString(for: date, relativeTo: Date())
     }
     
-    func savePostLocally() {
-        let request: NSFetchRequest<PostData> = PostData.fetchRequest()
-        do {
-            let result = try context.count(for: request)
-        } catch {
-            print("error")
-        }
+    func savePostLocally() {        
         let newPost = PostData(context: context)
         newPost.id = post.id
         newPost.name = post.name
