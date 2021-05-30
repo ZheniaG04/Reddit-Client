@@ -8,9 +8,6 @@
 import SwiftUI
 import CoreData
 
-
-import SwiftUI
-
 struct ContentView: View {
     @ObservedObject var postListViewModel: PostListViewModel
     
