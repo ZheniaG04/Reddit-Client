@@ -24,7 +24,6 @@
 		EF828DDE265C436900DFEBDF /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF828DDD265C436900DFEBDF /* Persistence.swift */; };
 		EF828DEC265C436900DFEBDF /* Reddit_ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF828DEB265C436900DFEBDF /* Reddit_ClientTests.swift */; };
 		EF828DF7265C436900DFEBDF /* Reddit_ClientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF828DF6265C436900DFEBDF /* Reddit_ClientUITests.swift */; };
-		EFCE900D26630EF90023746B /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCE900C26630EF90023746B /* UserDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +67,6 @@
 		EF828DF2265C436900DFEBDF /* Reddit ClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Reddit ClientUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF828DF6265C436900DFEBDF /* Reddit_ClientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reddit_ClientUITests.swift; sourceTree = "<group>"; };
 		EF828DF8265C436900DFEBDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EFCE900C26630EF90023746B /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,7 +151,6 @@
 				EF6217B6265C451C0003BC38 /* Model */,
 				EF6217B8265C45750003BC38 /* View */,
 				EF6217B7265C456B0003BC38 /* ViewModel */,
-				EFCE900B26630ED40023746B /* Extensions */,
 				EF828DD4265C436600DFEBDF /* Reddit_ClientApp.swift */,
 				EF828DD8265C436900DFEBDF /* Assets.xcassets */,
 				EF01AD062662EDED00B7FD45 /* Reddit_Client.xcdatamodeld */,
@@ -188,14 +185,6 @@
 				EF828DF8265C436900DFEBDF /* Info.plist */,
 			);
 			path = "Reddit ClientUITests";
-			sourceTree = "<group>";
-		};
-		EFCE900B26630ED40023746B /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				EFCE900C26630EF90023746B /* UserDefaults.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,7 +328,6 @@
 				EF01ACF62662D35800B7FD45 /* ImageSaver.swift in Sources */,
 				EF6217C2265C45D00003BC38 /* Post.swift in Sources */,
 				EF6217CC265C49DE0003BC38 /* PostListViewModel.swift in Sources */,
-				EFCE900D26630EF90023746B /* UserDefaults.swift in Sources */,
 				EF01AD082662EDED00B7FD45 /* Reddit_Client.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

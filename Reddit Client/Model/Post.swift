@@ -54,7 +54,11 @@ extension Post: Decodable {
             image = UIImage(data: data)
         }
     }
-    
+}
+
+//MARK: - CoreData
+extension Post {
+    // This init needed to read posts stored locally
     init(from postData: PostData) {
         id = postData.id ?? ""
         name = postData.name ?? ""

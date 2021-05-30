@@ -10,9 +10,15 @@ import SwiftUI
 import CoreData
 
 class PostListViewModel: ObservableObject {
-    let manager: NetworkManager
-    private let postsLimit = 50
+    
+    //MARK: - Private properties
+    
+    private let manager: NetworkManager
+    private let postsLimit = 50 // posts limit due to the task
     private let context = PersistenceController.shared.container.viewContext
+    private var wasLocalDataLoaded = false
+    
+    //MARK: - Public properties
     
     @Published var postsVM = [PostViewModel]()
 
@@ -25,13 +31,17 @@ class PostListViewModel: ObservableObject {
     }
     
     var fetchingAllowed: Bool {
-        posts.count < postsLimit && !UserDefaults.standard.wasLocalDataLoaded
+        // do not fetch data when the limit is reached or when it is local data
+        posts.count < postsLimit && !wasLocalDataLoaded
     }
         
+    //MARK: - Initialization
+    
     init(manager: NetworkManager) {
-        UserDefaults.standard.wasLocalDataLoaded = false
         self.manager = manager
     }
+    
+    //MARK: - Public methods
     
     func fetchList() {
         guard fetchingAllowed else { return }
@@ -39,7 +49,6 @@ class PostListViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let posts):
-                    UserDefaults.standard.wasLocalDataLoaded = false
                     self?.posts.append(contentsOf: posts)
                 case .failure:
                     self?.loadLocallyStoredData()
@@ -48,14 +57,16 @@ class PostListViewModel: ObservableObject {
         }
     }
     
-    func loadLocallyStoredData() {
+    //MARK: - Private methods
+    
+    private func loadLocallyStoredData() {
         let request: NSFetchRequest<PostData> = PostData.fetchRequest()
         do {
             let result = try context.fetch(request)
             self.posts = result.map{ postData in
                 Post(from: postData)
             }
-            UserDefaults.standard.wasLocalDataLoaded = true
+            wasLocalDataLoaded = true
         } catch {
             print("error")
         }

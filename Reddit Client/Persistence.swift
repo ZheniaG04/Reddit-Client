@@ -10,7 +10,7 @@ import CoreData
 struct PersistenceController {
     static let shared = PersistenceController()
     
-    private let entitiesLimit = 20
+    private let entitiesLimit = 20 // limit for saved posts due to the task
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
@@ -27,6 +27,7 @@ struct PersistenceController {
     }
     
     func isNewPostDataAllowed() -> Bool {
+        // this method checks whether the number of saved posts has reached the limit
         let request: NSFetchRequest<PostData> = PostData.fetchRequest()
         do {
             let actualQty = try container.viewContext.count(for: request)

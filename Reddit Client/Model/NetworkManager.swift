@@ -8,16 +8,23 @@
 import Foundation
 
 class NetworkManager {
+    
+    //MARK: - Private properties
+    
     private let redditURL = "https://www.reddit.com/top.json"
-    private let postsLimit = 10
+    private let postsLimit = 10 //batch size for pagination
     
     private let session: URLSession
     private let decoder: JSONDecoder
+    
+    //MARK: - Initialization
     
     init(session: URLSession = .shared, decoder: JSONDecoder = .init()) {
         self.session = session
         self.decoder = decoder
     }
+    
+    //MARK: - Public methods
     
     func fetchData(after: String? = nil, completion: @escaping (Result<[Post], Error>) -> Void) {
         var urlComponents = URLComponents(string: redditURL)

@@ -10,9 +10,13 @@ import UIKit
 
 struct PostViewModel: Identifiable {
     
-    let post: Post
+    //MARK: - Private properties
+
     private let context = PersistenceController.shared.container.viewContext
+    private let post: Post
     
+    //MARK: - Public properties
+
     var id: String {
         post.id
     }
@@ -55,6 +59,14 @@ struct PostViewModel: Identifiable {
         return formatter.localizedString(for: date, relativeTo: Date())
     }
     
+    //MARK: - Initialization
+
+    init(post: Post) {
+        self.post = post
+    }
+    
+    //MARK: - Public methods
+
     func savePostLocally() {
         guard PersistenceController.shared.isNewPostDataAllowed() else { return }
         

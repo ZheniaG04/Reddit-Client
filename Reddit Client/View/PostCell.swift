@@ -45,6 +45,7 @@ struct PostCell: View {
             }
         }
         .onAppear {
+            // showed posts are saved to local storage
             postVM.savePostLocally()
         }
     }
