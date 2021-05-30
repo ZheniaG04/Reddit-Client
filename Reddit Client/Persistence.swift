@@ -9,7 +9,8 @@ import CoreData
 
 struct PersistenceController {
     static let shared = PersistenceController()
-
+    
+    private let entitiesLimit = 20
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
@@ -23,5 +24,16 @@ struct PersistenceController {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+    }
+    
+    func isNewPostDataAllowed() -> Bool {
+        let request: NSFetchRequest<PostData> = PostData.fetchRequest()
+        do {
+            let actualQty = try container.viewContext.count(for: request)
+            return actualQty < entitiesLimit
+        } catch {
+            print("error")
+        }
+        return false
     }
 }

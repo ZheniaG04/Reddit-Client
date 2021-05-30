@@ -55,7 +55,9 @@ struct PostViewModel: Identifiable {
         return formatter.localizedString(for: date, relativeTo: Date())
     }
     
-    func savePostLocally() {        
+    func savePostLocally() {
+        guard PersistenceController.shared.isNewPostDataAllowed() else { return }
+        
         let newPost = PostData(context: context)
         newPost.id = post.id
         newPost.name = post.name
