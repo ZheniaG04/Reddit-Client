@@ -15,7 +15,7 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(postListViewModel.postsVM) { post in
-                    NavigationLink(destination: DetailView(url: post.url, saveButtonEnable: post.isSavingEnable)) {
+                    NavigationLink(destination: DetailView(detailVM: DetailViewModel(url: post.url, saveButtonEnable: post.isSavingEnable))) {
                         PostCell(postVM: post)
                     }
                 }

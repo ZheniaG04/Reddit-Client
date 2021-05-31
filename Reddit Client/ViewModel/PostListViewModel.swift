@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
-import CoreData
 
 class PostListViewModel: ObservableObject {
     

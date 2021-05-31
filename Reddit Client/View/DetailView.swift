@@ -9,25 +9,20 @@ import SwiftUI
 
 struct DetailView: View {
     
-    let url: String?
-    let saveButtonEnable: Bool
-    
-    @State private var showingAlert = false
-    
+    @ObservedObject var detailVM: DetailViewModel
+        
     var body: some View {
-        WebView(urlString: url)
+        WebView(urlString: detailVM.url)
             .toolbar(content: {
-                if saveButtonEnable {
+                if detailVM.saveButtonEnable {
                     Button(action: {
-                        let imageSaver = ImageSaver()
-                        imageSaver.savePhoto(from: url)
-                        showingAlert = true
+                        detailVM.savePhoto()
                     }, label: {
                         Label("Save", systemImage: "square.and.arrow.down")
                     })
                 }
             })
-            .alert(isPresented: $showingAlert) {
+            .alert(isPresented: $detailVM.imageWasSaved) {
                 Alert(title: Text("Info"),
                       message: Text("The image was saved."),
                       dismissButton: .default(Text("Got it!")))
@@ -37,6 +32,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(url: "https://www.google.com", saveButtonEnable: false)
+        DetailView(detailVM: DetailViewModel(url: "https://www.google.com"))
     }
 }

@@ -24,6 +24,7 @@
 		EF828DDE265C436900DFEBDF /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF828DDD265C436900DFEBDF /* Persistence.swift */; };
 		EF828DEC265C436900DFEBDF /* Reddit_ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF828DEB265C436900DFEBDF /* Reddit_ClientTests.swift */; };
 		EF828DF7265C436900DFEBDF /* Reddit_ClientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF828DF6265C436900DFEBDF /* Reddit_ClientUITests.swift */; };
+		EFB66EA9266564E3008A6C92 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB66EA8266564E3008A6C92 /* DetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		EF828DF2265C436900DFEBDF /* Reddit ClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Reddit ClientUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF828DF6265C436900DFEBDF /* Reddit_ClientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reddit_ClientUITests.swift; sourceTree = "<group>"; };
 		EF828DF8265C436900DFEBDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFB66EA8266564E3008A6C92 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			children = (
 				EF6217CB265C49DE0003BC38 /* PostListViewModel.swift */,
 				EF01ACEA266294ED00B7FD45 /* PostViewModel.swift */,
+				EFB66EA8266564E3008A6C92 /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				EF828DD7265C436600DFEBDF /* ContentView.swift in Sources */,
 				EF828DD5265C436600DFEBDF /* Reddit_ClientApp.swift in Sources */,
 				EF6217D6265C4B5D0003BC38 /* PostCell.swift in Sources */,
+				EFB66EA9266564E3008A6C92 /* DetailViewModel.swift in Sources */,
 				EF01ACF62662D35800B7FD45 /* ImageSaver.swift in Sources */,
 				EF6217C2265C45D00003BC38 /* Post.swift in Sources */,
 				EF6217CC265C49DE0003BC38 /* PostListViewModel.swift in Sources */,

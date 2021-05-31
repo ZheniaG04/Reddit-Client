@@ -8,6 +8,8 @@
 import SwiftUI
 
 class ImageSaver: NSObject {
+    var didFinishSaving: () -> Void = {}
+    
     func savePhoto(from url: String?) {
         if let url = url, let safeURL = URL(string: url),
            let data = try? Data(contentsOf: safeURL),
@@ -17,6 +19,6 @@ class ImageSaver: NSObject {
     }
 
     @objc func saveError(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        print("Save finished!")
+        didFinishSaving()
     }
 }
