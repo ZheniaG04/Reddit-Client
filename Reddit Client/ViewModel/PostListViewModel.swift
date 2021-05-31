@@ -15,7 +15,6 @@ class PostListViewModel: ObservableObject {
     
     private let manager: NetworkManager
     private let postsLimit = 50 // posts limit due to the task
-    private let context = PersistenceController.shared.container.viewContext
     private var wasLocalDataLoaded = false
     
     //MARK: - Public properties
@@ -51,24 +50,10 @@ class PostListViewModel: ObservableObject {
                 case .success(let posts):
                     self?.posts.append(contentsOf: posts)
                 case .failure:
-                    self?.loadLocallyStoredData()
+                    self?.posts = PersistenceController.shared.loadLocallyStoredPosts()
+                    self?.wasLocalDataLoaded = true
                 }
             }
-        }
-    }
-    
-    //MARK: - Private methods
-    
-    private func loadLocallyStoredData() {
-        let request: NSFetchRequest<PostData> = PostData.fetchRequest()
-        do {
-            let result = try context.fetch(request)
-            self.posts = result.map{ postData in
-                Post(from: postData)
-            }
-            wasLocalDataLoaded = true
-        } catch {
-            print("error")
         }
     }
 }

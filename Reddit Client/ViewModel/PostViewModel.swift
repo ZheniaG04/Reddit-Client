@@ -12,7 +12,6 @@ struct PostViewModel: Identifiable {
     
     //MARK: - Private properties
 
-    private let context = PersistenceController.shared.container.viewContext
     private let post: Post
     
     //MARK: - Public properties
@@ -68,23 +67,6 @@ struct PostViewModel: Identifiable {
     //MARK: - Public methods
 
     func savePostLocally() {
-        guard PersistenceController.shared.isNewPostDataAllowed() else { return }
-        
-        let newPost = PostData(context: context)
-        newPost.id = post.id
-        newPost.name = post.name
-        newPost.title = post.title
-        newPost.author = post.author
-        newPost.url = post.url
-        newPost.thumbnail = post.thumbnail
-        newPost.postHint = post.postHint
-        newPost.comments = Int16(post.comments)
-        newPost.createdUTC = post.createdUTC
-        newPost.image = image.jpegData(compressionQuality: 1)
-        do {
-            try context.save()
-        } catch {
-            print("error during saving")
-        }
+        PersistenceController.shared.savePostLocally(post: post)
     }
 }

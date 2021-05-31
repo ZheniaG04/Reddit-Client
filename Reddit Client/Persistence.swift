@@ -26,7 +26,7 @@ struct PersistenceController {
         })
     }
     
-    func isNewPostDataAllowed() -> Bool {
+    private func isNewPostDataAllowed() -> Bool {
         // this method checks whether the number of saved posts has reached the limit
         let request: NSFetchRequest<PostData> = PostData.fetchRequest()
         do {
@@ -36,5 +36,39 @@ struct PersistenceController {
             print("error")
         }
         return false
+    }
+    
+    func savePostLocally(post: Post) {
+        guard isNewPostDataAllowed() else { return }
+        
+        let newPost = PostData(context: container.viewContext)
+        newPost.id = post.id
+        newPost.name = post.name
+        newPost.title = post.title
+        newPost.author = post.author
+        newPost.url = post.url
+        newPost.thumbnail = post.thumbnail
+        newPost.postHint = post.postHint
+        newPost.comments = Int16(post.comments)
+        newPost.createdUTC = post.createdUTC
+        newPost.image = post.image?.jpegData(compressionQuality: 1)
+        do {
+            try container.viewContext.save()
+        } catch {
+            print("error during saving")
+        }
+    }
+    
+    func loadLocallyStoredPosts() -> [Post] {
+        let request: NSFetchRequest<PostData> = PostData.fetchRequest()
+        do {
+            let result = try container.viewContext.fetch(request)
+            return result.map{ postData in
+                Post(from: postData)
+            }
+        } catch {
+            print("error")
+        }
+        return []
     }
 }
